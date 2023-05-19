@@ -1,0 +1,37 @@
+{
+	"folders": [
+		{
+			"path": "../app"
+		},
+		{
+			"path": "../bootstrap"
+		},
+		{
+			"path": "../config"
+		},
+		{
+			"path": "../database"
+		},
+		{
+			"path": "../public"
+		},
+		{
+			"path": "../resources"
+		},
+		{
+			"path": "."
+		},
+		{
+			"path": "../storage"
+		},
+		{
+			"path": "../tests"
+		},
+		{
+			"path": "../vendor"
+		}
+	],
+	"settings": {
+		"intelephense.telemetry.enabled": false
+	}
+}

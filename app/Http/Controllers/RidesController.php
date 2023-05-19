@@ -20,78 +20,71 @@ class RidesController extends Controller
         }
     
         public function create()
-        {
-             // Return the view for creating a new ride
-        return view('rides.create');
-        }
-    
-        public function store(Request $request)
-        {
-           // Validate the request data
-        $request->validate([
-            'source' => 'required',
-            'destination' => 'required',
-            'date' => 'required|date',
-            'time' => 'required',
-            'seats_available' => 'required|integer|min:1',
-            'price_per_seat' => 'required|numeric|min:0',
-        ]);
-
-        // Create a new ride record in the database
-        $ride = new Ride();
-        $ride->source = $request->input('source');
-        $ride->destination = $request->input('destination');
-        $ride->date = $request->input('date');
-        $ride->time = $request->input('time');
-        $ride->seats_available = $request->input('seats_available');
-        $ride->price_per_seat = $request->input('price_per_seat');
-        $ride->user_id = auth()->user()->id; // Set the authenticated user ID as the owner of the ride
-        $ride->save();
-
-        // Redirect the user to the index page with a success message
-        return redirect()->route('rides.index')->with('success', 'Ride created successfully!');
-        }
-    
-        public function reserve(Request $request, $id)
 {
-    $ride = Ride::find($id);
+    return view('rides.create');
+}
 
-    if(!$ride) {
-        return redirect()->route('rides.index')->with('error', 'Ride not found.');
-    }
-
-    // Validate form data
-    $request->validate([
-        'pickup_location' => 'required',
-        'dropoff_location' => 'required',
-        'seats' => 'required|integer|min:1|max:' . $ride->available_seats
+public function store(Request $request)
+{
+    // Validate the form data
+    $validatedData = $request->validate([
+        'from' => 'required',
+        'to' => 'required',
+        'date' => 'required|date',
+        'available_seats' => 'required|integer|min:1',
+        'description' => 'nullable'
     ]);
 
-    // Create a new reservation
-    $reservation = new Reservation([
-        'pickup_location' => $request->input('pickup_location'),
-        'dropoff_location' => $request->input('dropoff_location'),
-        'seats' => $request->input('seats'),
-        'status' => 1, // 1 for active, 0 for dropped
-    ]);
-
-    // Save the reservation to the database
-    $ride->reservations()->save($reservation);
-
-    // Update available seats for the ride
-    $ride->available_seats -= $reservation->seats;
+    // Create a new ride with the validated data and save it to the database
+    $ride = new Ride($validatedData);
     $ride->save();
 
-    // Redirect to the reservation confirmation page
-    return view('rides.reserve-confirm', compact('reservation'));
+    // Redirect the user to the newly created ride's page
+    return redirect()->route('rides.show', ['ride' => $ride->id]);
 }
+    // Redirect the user to
+
+    
+    public function reserve(Request $request, $id)
+    {
+        $ride = Ride::find($id);
+    
+        if(!$ride) {
+            return redirect()->route('rides.index')->with('error', 'Ride not found.');
+        }
+    
+        // Validate form data
+        $request->validate([
+            'num_passengers' => 'required|integer|min:1|max:' . $ride->available_seats,
+            'notes' => 'nullable'
+        ]);
+    
+        // Create a new reservation
+        $reservation = new Reservation([
+            'num_passengers' => $request->input('num_passengers'),
+            'notes' => $request->input('notes'),
+            'is_dropped' => false
+        ]);
+    
+        // Save the reservation to the database
+        $ride->reservations()->save($reservation);
+    
+        // Update available seats for the ride
+        $ride->available_seats -= $reservation->num_passengers;
+        $ride->save();
+    
+        // Redirect to the reservation confirmation page
+        return view('rides.reserve-confirm', compact('reservation'));
+    }
+    
 public function show($id)
 {
     $ride = Ride::find($id);
     if(!$ride) {
         return redirect()->route('rides.index')->with('error', 'Ride not found.');
     }
-    return view('rides.show', compact('ride'));
+    $reservations = $ride->reservations;
+    return view('rides.show', compact('ride', 'reservations'));
 }
-    } //
 
+    } //

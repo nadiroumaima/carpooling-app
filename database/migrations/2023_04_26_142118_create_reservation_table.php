@@ -11,9 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('reservation', function (Blueprint $table) {
+        Schema::create('reservations', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('ride_id');
+            $table->unsignedBigInteger('user_id');
+            $table->integer('num_passengers');
+            $table->text('notes')->nullable();
             $table->timestamps();
+            
+            $table->foreign('ride_id')->references('id')->on('rides')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->boolean('is_dropped')->default(false);
         });
     }
 
