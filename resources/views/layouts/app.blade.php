@@ -13,7 +13,7 @@
 
         
         <!-- CSS -->
-        <link href="{{ asset('css/nav.css') }}" rel="stylesheet">
+        
 
         
         

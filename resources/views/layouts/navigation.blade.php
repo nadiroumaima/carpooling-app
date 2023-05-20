@@ -12,6 +12,12 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('rides.index')" :active="request()->routeIs('rides.index')">
+                        {{ __('Rides') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('rides.create')" :active="request()->routeIs('rides.create')">
+                        {{ __('Create your ride') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -67,6 +73,8 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+            
+        
         </div>
 
         <!-- Responsive Settings Options -->
