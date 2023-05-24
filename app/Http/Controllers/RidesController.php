@@ -38,6 +38,7 @@ public function store(Request $req)
     $ride->departure_time=$req->deparature_time;
     $ride->available_seats=$req->number_of_seats;
     $ride->save();
+    return redirect()->route('rides.index');
 }
 
 /*public function store(Request $request)
