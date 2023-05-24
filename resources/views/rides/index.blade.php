@@ -66,59 +66,77 @@
 
     <style>
         .rides-list {
-            background-color: #1a202c;
-            color: white;
-            padding: 30px;
-            border-radius: 10px;
-        }
+  background-color: #7c436f;
+  color: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
 
-        h1 {
-            font-size: 40px;
-            text-align: center;
-            margin-bottom: 20px;
-        }
+h1 {
+  font-size: 40px;
+  text-align: center;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
 
-        table {
-            color: white;
-            width: 100%;
-            border-collapse: collapse;
-        }
+table {
+  color: white;
+  width: 100%;
+  border-collapse: collapse;
+}
 
-        th, td {
-            padding: 10px;
-            text-align: center;
-            border-bottom: 1px solid #cbd5e0;
-        }
+th, td {
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid #9b58a4;
+}
 
-        tr:hover {
-            background-color: #4a5568;
-        }
+tr:hover {
+  background-color: #9b58a4;
+}
 
-        a {
-            color: #edf2f7;
-            text-decoration: none;
-        }
+a {
+  color: #edf2f7;
+  text-decoration: none;
+}
 
-        a:hover {
-            text-decoration: underline;
-        }
+a:hover {
+  text-decoration: underline;
+}
 
-        p {
-            text-align: center;
-            font-size: 20px;
-            margin-top: 50px;
-        }
-        form {
-  background-color: #1a202c;
+p {
+  text-align: center;
+  font-size: 20px;
+  margin-top: 50px;
+}
+
+form {
+  background-color: #7c436f;
   color: white;
   padding: 20px;
   border-radius: 10px;
   margin-bottom: 20px;
-  width: 50%;
+  width: 94%;
+  display: flex; /* Add display flex */
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+
+.form-row {
   display: flex;
   align-items: center;
 }
 
+.form-row .col-md-4 {
+  flex: 0 0 33.33%;
+}
+
+.form-row label {
+  width: 100%;
+  margin-right: 5px;
+}
 
 
 form label {
@@ -127,7 +145,7 @@ form label {
 }
 
 form input[type="text"] {
-  background-color: #2d3748;
+  background-color: #f4f1f5;
   color: white;
   border: none;
   padding: 10px;
@@ -136,19 +154,21 @@ form input[type="text"] {
 
 form button[type="submit"],
 form a.btn {
-  background-color: #4a5568;
+  background-color: #6a3664;
   color: white;
   border: none;
   padding: 10px 20px;
   margin-top: 10px;
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 form button[type="submit"]:hover,
 form a.btn:hover {
-  background-color: #718096;
+  background-color: #4a2054;
 }
+
 
 
     </style>
