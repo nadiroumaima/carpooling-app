@@ -9,7 +9,7 @@
           <h4 class="font-weight-bold">{{ __('Create Ride') }}</h4>
         </div>
         <div class="card-body">
-          <form method="POST" action="{{ route('rides.store') }}">
+          <form method="POST" action="store">
             @csrf
             <div class="form-group">
               <label for="source">{{ __('Source') }}</label>
@@ -58,62 +58,75 @@
 </div>
 
 <style>
-    body {
-        background-color: #f8f9fa;
-    }
-    
-    .card {
-        margin-top: 50px;
-        border: none;
-        border-radius: 10px;
-        box-shadow: 0 0 20px rgba(0,0,0,.2);
-    }
-    
-    .card-header {
-        background-color: #343c44;
-        color: #fff;
-        font-size: 2.5rem;
-        text-align: center;
-        border-radius: 10px 10px 0 0;
-    }
-    
-    .card-body {
-        padding: 30px;
-    }
-    
-    .form-group label {
-        font-size: 1.2rem;
-        font-weight: bold;
-    }
-    
-    .form-control {
-        border-radius: 0;
-    }
-    
-    .btn-primary {
-        background-color: #4f5861;
-        border-color: #161718;
-        border-radius: 0;
-        width: 100%;
-    }
-    
-    .btn-primary:hover {
-        background-color: #f56767;
-        border-color: #393d42;
-    }
-    
-    @media (min-width: 768px) {
-        .card {
-            width: 50%;
-            margin: 100px auto;
-        }
-    }
-    
-    @media (max-width: 767px) {
-        .card {
-            width: 100%;
-            margin: 50px auto;
-        }
-    }
+    <style>
+  body {
+      background-color: #f8f9fa;
+  }
+
+  .card {
+      margin-top: 50px;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,.2);
+  }
+
+  .card-header {
+      background-color: #7c436f;
+      color: #fff;
+      font-size: 2.5rem;
+      text-align: center;
+      border-radius: 10px 10px 0 0;
+  }
+
+  .card-body {
+      padding: 30px;
+  }
+
+  .form-group {
+  display: flex;
+  align-items: center;
+
+}
+
+.form-group label {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+  .form-control {
+      border-radius: 10px;
+      margin:5px
+  }
+
+  .btn-primary {
+      background-color: #7c436f ;
+      border-color: #161718;
+      border-radius: 10px;
+      width: 30%;
+      font-weight: bolder  ;
+      margin: 15px;
+      cursor: pointer;
+      font-size: 20px;
+  }
+
+  .btn-primary:hover {
+      background-color: #fd0a0a;
+      border-color: #393d42;
+  }
+
+  @media (min-width: 768px) {
+      .card {
+          width: 50%;
+          margin: 100px auto;
+      }
+  }
+
+  @media (max-width: 767px) {
+      .card {
+          width: 100%;
+          margin: 50px auto;
+      }
+  }
 </style>
+
 @endsection

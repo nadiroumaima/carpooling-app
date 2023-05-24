@@ -1,3 +1,4 @@
+@import "<C:\XAMPP\htdocs\carpooling-app\tailwind.config.js>";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

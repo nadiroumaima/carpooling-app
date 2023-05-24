@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\RidesController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ratingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,9 +34,10 @@ Route::post('/rides', [RidesController::class, 'store'])->name('rides.store');
 Route::get('/rides/{ride}', [RidesController::class, 'show'])->name('rides.show');
 Route::get('/rides/{ride}/reserve', [RidesController::class, 'reserve'])->name('rides.reserve');
 Route::post('/reservations', [ReservationsController::class, 'store'])->name('reservations.store');
-Route::get('/exemple', function () {
-    return view('exemple');
+Route::get('/rating',[ratingController::class,'rating']);
+Route::post('/rides/create',[RidesController::class,'store']);
+Route::get('/map', function () {
+    return view('map');
 });
-
 require __DIR__.'/auth.php';
 

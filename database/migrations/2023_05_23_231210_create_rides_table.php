@@ -13,11 +13,13 @@ return new class extends Migration
     {
         Schema::create('rides', function (Blueprint $table) {
             $table->id();
+            $table->string('driver_name');
             $table->string('from');
             $table->string('to');
             $table->dateTime('date');
             $table->integer('available_seats');
             $table->text('description')->nullable();
+            $table->dateTime('departure_time')->nullable();
             $table->timestamps();
         });
     }
