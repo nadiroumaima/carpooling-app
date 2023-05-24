@@ -10,14 +10,29 @@ use App\Models\reservation;
 class RidesController extends Controller
 
     {
-        public function index()
-        {
-            // Retrieve all the rides from the database
-        $rides = Ride::all();
+        public function index(Request $request)
+{
+    $query = Ride::query();
 
-        // Return the view with the rides data
-        return view('rides.index', compact('rides'));
-        }
+    // Filter by destination
+    if ($request->filled('destination')) {
+        $destination = $request->input('destination');
+        $query->where('to', 'LIKE', "%$destination%");
+    }
+
+    // Filter by departure place
+    if ($request->filled('departure')) {
+        $departure = $request->input('departure');
+        $query->where('from', 'LIKE', "%$departure%");
+    }
+
+    // Retrieve the filtered rides from the database
+    $rides = $query->get();
+
+    // Return the view with the filtered rides data
+    return view('rides.index', compact('rides'));
+}
+
     
         public function create()
 {
