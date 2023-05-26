@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
+ 
+  
+
+
 @section('content')
+
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-8">
@@ -67,6 +72,7 @@
       border: none;
       border-radius: 10px;
       box-shadow: 0 0 20px rgba(0,0,0,.2);
+      background-color: #fff
   }
   
   .card-header {
@@ -109,7 +115,7 @@
   }
   
   .btn-primary:hover {
-      background-color: #fd0a0a;
+      background-color: #ff6f8e;
       border-color: #393d42;
   }
   

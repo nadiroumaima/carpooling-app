@@ -31,10 +31,16 @@ Route::get('/rides', [RidesController::class, 'index'])->name('rides.index');
 Route::get('/rides/create', [RidesController::class, 'create'])->name('rides.create');
 
 Route::get('/rides/{ride}', [RidesController::class, 'show'])->name('rides.show');
-Route::get('/rides/{ride}/reserve', [RidesController::class, 'reserve'])->name('rides.reserve');
+Route::post('/rides/{ride}/reserve', [RidesController::class, 'reserve'])->name('rides.reserve');
 Route::post('/reservations', [ReservationsController::class, 'store'])->name('reservations.store');
 Route::get('/rating',[ratingController::class,'rating']);
 Route::post('/rides/store',[RidesController::class,'store'])->name('rides.store');
+
+
+
+
+
+
 
 
 

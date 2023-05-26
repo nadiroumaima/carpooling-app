@@ -1,8 +1,10 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('"Welcome aboard! Join our carpooling community and enjoy eco-friendly ridesharing experiences.') }}
-        </h2>
+        <h3 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            {{ __('Welcome aboard! Join our carpooling community and enjoy eco-friendly ridesharing experiences.') }}
+        </h3>
+        
+
     </x-slot>
 
     <div class="py-12">
@@ -37,42 +39,23 @@
         box-sizing: border-box;
         padding: 20px;
         background-color: #7c436f;
-        border-radius: 10px;
+        border-radius: 15px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         transition: transform 0.3s ease;
     }
     .picture-container h1 {
         font-weight: bold;
-        color: #333333;
+        color: #000000;
     }
     .picture-container:hover {
-        transform: translateY(-10px);
+        transform: translateY(-15px);
     }
     
     .picture-container img {
         width: 100%; /* Make the images fill the container width */
         margin-bottom: 10px;
     }
-    body {
-        background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-        background-size: 400% 400%;
-        animation: gradient 15s ease infinite;
-        height: 100vh;
-    }
-
-    @keyframes gradient {
-        0% {
-            background-position: 0% 50%;
-        }
-
-        50% {
-            background-position: 100% 50%;
-        }
-
-        100% {
-            background-position: 0% 50%;
-        }
-    }
+    
 </style>
 <body>
 <div class="picture-container-wrapper">

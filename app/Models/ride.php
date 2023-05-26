@@ -10,5 +10,9 @@ class ride extends Model
     use HasFactory;
     protected $fillable= ['departure', 'arrvale', 'date','price','seats_available','user_id'];
     public function user() {return $this->belongTo(User::class);}
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
+    }
     
 }

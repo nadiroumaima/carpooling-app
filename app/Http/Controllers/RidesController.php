@@ -6,12 +6,14 @@ use Illuminate\Http\Request;
 use App\Models\ride;
 use Illuminate\Support\Facades\Auth;
 use App\Models\reservation;
+
 class RidesController extends Controller
     {
         public function index()
         {
             // Retrieve all the rides from the database
         $rides = ride::all();
+
         // Return the view with the rides data
         return view('rides.index', compact('rides'));
         }
@@ -52,8 +54,8 @@ public function store(Request $req)
 }
     // Redirect the user to
 */
-    public function reserve(Request $request, $id)
-    {
+public function reserve(Request $request, $id)
+    {    
         $ride = ride::find($id);
         if(!$ride) {
             return redirect()->route('rides.index')->with('error', 'Ride not found.');
@@ -64,10 +66,18 @@ public function store(Request $req)
             'notes' => 'nullable'
         ]);
         // Create a new reservation
+        
+
         $reservation = new Reservation([
             'num_passengers' => $request->input('num_passengers'),
             'notes' => $request->input('notes'),
-            'is_dropped' => false
+            'is_dropped' => false,
+            'ride_id' => $ride->id,
+            'driver_id' => $ride->driver_id,
+            'user_id' => auth()->id(),
+
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
         // Save the reservation to the database
         $ride->reservations()->save($reservation);
