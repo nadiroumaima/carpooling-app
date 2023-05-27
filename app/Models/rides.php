@@ -15,27 +15,16 @@ class rides extends Model
         'destination',
         'date',
         'seats_available',
+        'departure_time',
         'price_per_seat',
         'user_id',
     ];
 
-    public static function createRide($data)
+
+    public function reservations()
     {
-        $ride = new static;
-        $ride->fill($data);
-        $ride->save();
-
-        return $ride;
+        return $this->hasMany(reservation::class);
     }
-
-    public function storeRide($data)
-    {
-        $this->fill($data);
-        $this->save();
-
-        return $this;
-    }
-
 
 
     public function user() {return $this->belongTo(User::class);}

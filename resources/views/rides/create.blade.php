@@ -13,7 +13,7 @@
             @csrf
             <div class="form-group">
               <label for="source">{{ __('Source') }}</label>
-              <input id="source" type="text" class="form-control @error('source') is-invalid @enderror" name="source" value="{{ old('source') }}" required autocomplete="source" autofocus>
+              <input id="source" placeholder="Enter source" type="text" class="form-control @error('source') is-invalid @enderror" name="source" value="{{ old('source') }}" required autocomplete="source" autofocus>
               @error('source')
               <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -22,7 +22,7 @@
             </div>
             <div class="form-group">
               <label for="destination">{{ __('Destination') }}</label>
-              <input id="destination" type="text" class="form-control @error('destination') is-invalid @enderror" name="destination" value="{{ old('destination') }}" required autocomplete="destination" autofocus>
+              <input id="destination" placeholder="Enter destination" type="text" class="form-control @error('destination') is-invalid @enderror" name="destination" value="{{ old('destination') }}" required autocomplete="destination" autofocus>
               @error('destination')
               <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -68,6 +68,7 @@
       border: none;
       border-radius: 10px;
       box-shadow: 0 0 20px rgba(0,0,0,.2);
+      background-color: #fff
   }
 
   .card-header {
@@ -110,7 +111,7 @@
   }
 
   .btn-primary:hover {
-      background-color: #fd0a0a;
+      background-color: #ff6f8e;
       border-color: #393d42;
   }
 

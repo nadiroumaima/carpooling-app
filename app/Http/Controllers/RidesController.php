@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\rides;
 use Illuminate\Support\Facades\Auth;
 use App\Models\reservation;
-
+use App\Http\Controllers\Exception;
 class RidesController extends Controller
 
     {
@@ -29,9 +29,10 @@ class RidesController extends Controller
 public function store(Request $req)
 {
     $userId = auth()->id();
+    $user = auth()->user();
     $ride= new Rides;
     $ride->driver_id=$userId;
-    $ride->driver_name='flane';
+    $ride->driver_name=$user->name;
     $ride->date=Carbon::now();
     $ride->from=$req->source;
     $ride->to=$req->destination;
@@ -40,27 +41,6 @@ public function store(Request $req)
     $ride->save();
     return redirect()->route('rides.index');
 }
-
-/*public function store(Request $request)
-{
-    // Validate the form data
-    $validatedData = $request->validate([
-        'from' => 'required',
-        'to' => 'required',
-        'date' => 'required|date',
-        'available_seats' => 'required|integer|min:1',
-        'description' => 'nullable'
-    ]);
-
-    // Create a new ride with the validated data and save it to the database
-    $ride = new Ride($validatedData);
-    $ride->save();
-
-    // Redirect the user to the newly created ride's page
-    return redirect()->route('rides.show', ['ride' => $ride->id]);
-}
-    // Redirect the user to
-*/
 
     public function reserve(Request $request, $id)
     {
@@ -75,12 +55,16 @@ public function store(Request $req)
             'num_passengers' => 'required|integer|min:1|max:' . $ride->available_seats,
             'notes' => 'nullable'
         ]);
-
         // Create a new reservation
         $reservation = new Reservation([
             'num_passengers' => $request->input('num_passengers'),
             'notes' => $request->input('notes'),
-            'is_dropped' => false
+            'is_dropped' => false,
+            'ride_id'=>$ride->id,
+            'driver_id' => $ride->driver_id,
+            'user_id' => auth()->id(),
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
 
         // Save the reservation to the database
@@ -94,14 +78,31 @@ public function store(Request $req)
         return view('rides.reserve-confirm', compact('reservation'));
     }
 
-public function show($id)
+/*public function show($id)
 {
     $ride = Rides::find($id);
     if(!$ride) {
         return redirect()->route('rides.index')->with('error', 'Ride not found.');
     }
+    $ride = Rides::find('ride_id');
     $reservations = $ride->reservations;
     return view('rides.show', compact('ride', 'reservations'));
 }
 
+
+*/
+public function show($id)
+{
+    $ride = Rides::find($id);
+
+    if (!$ride) {
+        return redirect()->route('rides.index')->with('error', 'Ride not found.');
+    }
+    /*$ride = Rides::find($id);
+    $reservation = new Reservation();
+    $reservations = $reservation->getReservationsByRide($id) ?? collect();
+*/
+    return view('rides.show', compact('ride'));
+}
     } //
+
