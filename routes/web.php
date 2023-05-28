@@ -37,6 +37,10 @@ Route::get('/rating',[ratingController::class,'rating']);
 Route::post('/rides/store',[RidesController::class,'store'])->name('rides.store');
 
 
+Route::get('/rides/reserve-confirm', [RidesController::class, 'reserve'])->name('reserveconfirm');
+
+
+
 
 
 

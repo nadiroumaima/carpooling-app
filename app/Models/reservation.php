@@ -7,11 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class reservation extends Model
 {
     use HasFactory;
-    
+    protected $table = 'reservations';
     protected $fillable = [
+        'user_id',
         'num_passengers',
         'notes',
         'is_dropped',
+
     ];
     
     protected $casts = [
@@ -20,7 +22,18 @@ class reservation extends Model
     
     public function ride()
     {
-        return $this->belongsTo(Ride::class);
+        return $this->belongsTo(rides::class, 'ride_id');
+    }
+    
+    public function getReservationsByRide($rideId)
+    {
+        try {
+            $reservations = self::where('ride_id', $rideId)->get();
+                return $reservations;
+        } catch (\Exception $e) {
+            // Handle any exceptions that may occur
+            echo "Error fetching reservations: " . $e->getMessage();
+        }
     }
     
     public function scopeDropped($query)

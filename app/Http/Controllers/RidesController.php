@@ -9,12 +9,23 @@ use App\Models\reservation;
 
 class RidesController extends Controller
     {
-        public function index()
+        public function index(Request $request)
         {
             // Retrieve all the rides from the database
-        $rides = ride::all();
-
-        // Return the view with the rides data
+            $destination = $request->query('destination');
+            $departure = $request->query('departure');
+        
+            $query = Ride::query();
+        
+            if ($destination) {
+                $query->where('to', 'LIKE', '%' . $destination . '%');
+            }
+        
+            if ($departure) {
+                $query->where('from', 'LIKE', '%' . $departure . '%');
+            }
+        
+            $rides = $query->get();
         return view('rides.index', compact('rides'));
         }
         public function create()
@@ -23,10 +34,11 @@ class RidesController extends Controller
 }
 public function store(Request $req)
 {
-    $userId = auth()->id();
+    $userId = Auth::id();
+    $user = auth()->user();
     $ride= new ride();
     $ride->driver_id=$userId;
-    $ride->driver_name='flane';
+    $ride->driver_name=$user->name;
     $ride->date=Carbon::now();
     $ride->from=$req->source;
     $ride->to=$req->destination;
@@ -55,7 +67,7 @@ public function store(Request $req)
     // Redirect the user to
 */
 public function reserve(Request $request, $id)
-    {    
+    {   $this->middleware('auth');
         $ride = ride::find($id);
         if(!$ride) {
             return redirect()->route('rides.index')->with('error', 'Ride not found.');
@@ -69,12 +81,13 @@ public function reserve(Request $request, $id)
         
 
         $reservation = new Reservation([
+            'user_id' =>  Auth::check() ? Auth::id() : true,
             'num_passengers' => $request->input('num_passengers'),
             'notes' => $request->input('notes'),
             'is_dropped' => false,
             'ride_id' => $ride->id,
             'driver_id' => $ride->driver_id,
-            'user_id' => auth()->id(),
+            
 
             'created_at' => now(),
             'updated_at' => now()
@@ -85,8 +98,9 @@ public function reserve(Request $request, $id)
         $ride->available_seats -= $reservation->num_passengers;
         $ride->save();
         // Redirect to the reservation confirmation page
-        return view('rides.reserve-confirm', compact('reservation'));
+        return view('rides.reserveconfirm', compact('reservation'));
     }
+    
 public function show($id)
 {
     $ride = ride::find($id);
