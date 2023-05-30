@@ -2,6 +2,8 @@
 use App\Http\Controllers\RidesController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ReservationController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -37,7 +39,14 @@ Route::get('/rating',[ratingController::class,'rating']);
 Route::post('/rides/store',[RidesController::class,'store'])->name('rides.store');
 
 
-Route::get('/rides/reserve-confirm', [RidesController::class, 'reserve'])->name('reserveconfirm');
+Route::get('/rides/{ride}/reserve-confirm', [RidesController::class, 'reserve'])->name('reserveconfirm');
+Route::get('/rides/{ride}/reserve-confirm', [RidesController::class, 'getDriverInformation'])->name('infos');
+
+Route::get('/reservations', [ReservationController::class, 'index'])->name('reservations.index');
+
+
+
+Route::get('/rides/{ride}/reserve', [RidesController::class, 'reserve'])->name('rides.reserve');
 
 
 

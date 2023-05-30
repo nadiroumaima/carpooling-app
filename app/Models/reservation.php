@@ -9,6 +9,7 @@ class reservation extends Model
     use HasFactory;
     protected $table = 'reservations';
     protected $fillable = [
+        'ride_id',
         'user_id',
         'num_passengers',
         'notes',
@@ -22,7 +23,7 @@ class reservation extends Model
     
     public function ride()
     {
-        return $this->belongsTo(rides::class, 'ride_id');
+        return $this->belongsTo(ride::class, 'ride_id');
     }
     
     public function getReservationsByRide($rideId)

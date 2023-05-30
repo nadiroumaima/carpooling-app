@@ -12,7 +12,7 @@ class ride extends Model
     public function user() {return $this->belongTo(User::class);}
     public function reservations()
     {
-        return $this->hasMany(Reservation::class);
+        return $this->hasMany(reservation::class);
     }
     
 }

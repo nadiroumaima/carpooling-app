@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\ride;
 use Illuminate\Support\Facades\Auth;
 use App\Models\reservation;
+use App\Models\User;
 
 class RidesController extends Controller
     {
@@ -72,7 +73,7 @@ public function reserve(Request $request, $id)
         if(!$ride) {
             return redirect()->route('rides.index')->with('error', 'Ride not found.');
         }
-        // Validate form data
+        // Validate form data0
         $request->validate([
             'num_passengers' => 'required|integer|min:1|max:' . $ride->available_seats,
             'notes' => 'nullable'
@@ -94,11 +95,12 @@ public function reserve(Request $request, $id)
         ]);
         // Save the reservation to the database
         $ride->reservations()->save($reservation);
+        $driver = $this->getDriverInformation($ride->driver_id);
         // Update available seats for the ride
         $ride->available_seats -= $reservation->num_passengers;
         $ride->save();
         // Redirect to the reservation confirmation page
-        return view('rides.reserveconfirm', compact('reservation'));
+        return view('rides.reserveconfirm', compact('reservation','driver'));
     }
     
 public function show($id)
@@ -110,4 +112,21 @@ public function show($id)
     $reservations = $ride->reservations;
     return view('rides.show', compact('ride', 'reservations'));
 }
-    } //
+
+public function getDriverInformation($id)
+{
+    $user = User::find($id);
+
+    if (!$user) {
+        return null; // Handle the case where the user is not found
+    }
+
+    $driverInformation = [
+        'name' => $user->name,
+        'email' => $user->email,
+        
+    ];
+    return $driverInformation;
+}
+
+}

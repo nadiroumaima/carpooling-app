@@ -31,6 +31,13 @@
             </div>
         </div>
     </div>
+    <script>
+      document.getElementById('reserve-btn').addEventListener('click', function() {
+          document.getElementById('reserve-form').style.display = 'block';
+          this.style.display = 'none';
+      });
+  </script>
+
     <style>
        
        .card {
