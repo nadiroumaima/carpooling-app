@@ -47,6 +47,33 @@
             @endif
         </div>
 
+        <div>
+            <x-input-label for="Phone_number" :value="__('Phone Number')" />
+            <x-text-input id="phone_number" name="phone_number" class="mt-1 block w-full" :value="old('phone_number',$user->phone_number)"  required autocomplete="tel" />
+            <x-input-error class="mt-2" :messages="$errors->get('phone_number')" />
+        </div>
+
+        <div>
+            <x-input-label for="picture" :value="__('Picture')" />
+            <input type="file" id="picture" name="picture" class="mt-1 block w-full" required />
+            <x-input-error class="mt-2" :messages="$errors->get('picture')" />
+        </div>
+
+        <div>
+            <x-input-label for="sexe" :value="__('Sexe')" />
+            <x-select-input-component id="sexe" name="sexe" class="mt-1 block w-full" :value="$user->sexe" :options="[
+                    'male' => 'Male',
+                    'female' => 'Female',
+                ]" />
+            <x-input-error class="mt-2" :messages="$errors->get('sexe')" />
+        </div>
+
+        <div>
+            <x-input-label for="cin" :value="__('CIN')" />
+            <x-text-input id="cin" name="cin" class="mt-1 block w-full" :value="old('cin', $user->cin)" required autocomplete="off" />
+            <x-input-error class="mt-2" :messages="$errors->get('cin')" />
+        </div>
+
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
 

@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Models\vehicles;
+
 
 class ProfileController extends Controller
 {
@@ -15,11 +17,13 @@ class ProfileController extends Controller
      * Display the user's profile form.
      */
     public function edit(Request $request): View
-    {
-        return view('profile.edit', [
-            'user' => $request->user(),
-        ]);
-    }
+{
+    $user = $request->user();
+    $vehicle = $user->vehicle ?? new vehicles(); // Retrieve the user's vehicle
+
+    return view('profile.edit', compact('user', 'vehicle'));
+}
+
 
     /**
      * Update the user's profile information.

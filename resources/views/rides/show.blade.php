@@ -19,6 +19,10 @@
                                     <td>{{ $ride->to }}</td>
                                 </tr>
                                 <tr>
+                                    <td>{{ __('Driver_name') }}</td>
+                                    <td>{{ $ride->driver_name}}</td>
+                                </tr>
+                                <tr>
                                     <td>{{ __('Date') }}</td>
                                     <td>{{ $ride->date }}</td>
                                 </tr>
@@ -32,81 +36,105 @@
                                 </tr>
                                 <tr>
                                     <td>{{ __('Price per Seat') }}</td>
-                                    <td>{{ 50 }}</td>
+                                    <td>{{ $ride->price_per_seat }}</td>
                                 </tr>
                             </tbody>
                         </table>
+                        @if (auth()->check()) {{-- Check if the user is authenticated --}}
+                            <button class="btn btn-primary" id="reserve-btn">Reserve</button>
 
-                                    @if (auth()->check()) {{-- Check if the user is authenticated --}}
-                                    <button class="btn btn-primary" id="reserve-btn">Reserve</button>
-                                    <form id="reserve-form" action="{{ route('rides.reserve', ['ride' => $ride->id]) }}" method="POST" style="display: none;">
-                                        @csrf
-                                        <div class="form-group">
-                                            <label for="num_passengers">Number of Passengers:</label>
-                                            <input type="number" name="num_passengers" id="num_passengers" class="form-control" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="notes">Notes:</label>
-                                            <textarea name="notes" id="notes" class="form-control"></textarea>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary">Reserve</button>
-                                    </form>
-                                @else
-                                    <p>Please login to reserve a seat.</p>
-                                @endif
-                            </div>
-                        </div>
+                            <form id="reserve-form" action="{{ route('rides.reserve', ['ride' => $ride->id]) }}" method="POST" style="display: none;">
+                                @csrf
+                                <div class="form-group">
+                                    <label for="num_passengers">Number of Passengers:</label>
+                                    <input type="number" name="num_passengers" id="num_passengers" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="notes">Notes:</label>
+                                    <textarea name="notes" id="notes" class="form-control"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Reserve</button>
+                            </form>
+                        @else
+                            <p>Please login to reserve a seat.</p>
+                        @endif
                     </div>
                 </div>
             </div>
-            <script>
-                document.getElementById('reserve-btn').addEventListener('click', function() {
-                    document.getElementById('reserve-form').style.display = 'block';
-                    this.style.display = 'none';
-                });
-            </script>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('reserve-btn').addEventListener('click', function() {
+            document.getElementById('reserve-form').style.display = 'block';
+            this.style.display = 'none';
+        });
+    </script>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <style>
-        .card-header {
-            background-color: #E2E8F0;
-            font-size: 20px;
-            font-weight: bold;
-            padding: 20px;
-            color: #4A5568;
-        }
+        .card {
+  width: 500px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border radius:10px;
+}
 
-        .card-body {
-            background-color: #EDF2F7;
-            padding: 20px;
-        }
+.card-header {
+  background-color: #7c436f; /* Updated background color to match #7c436f */
+  font-size: 20px;
+  font-weight: bold;
+  padding: 20px;
+  color: #FFFFFF; /* Updated text color to white */
+}
 
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
+.card-body {
+  background-color: #f0e8f0; /* Adjusted background color to complement #7c436f */
+  padding: 20px;
+}
 
-        th, td {
-            text-align: left;
-            padding: 8px;
-        }
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
 
-        th {
-            background-color: #A0AEC0;
-            color: white;
-        }
+th,
+td {
+  text-align: left;
+  padding: 8px;
+}
 
-        tr:nth-child(even) {
-            background-color: #D6DBDF;
-        }
+th {
+  background-color: #a485a8; /* Adjusted background color to complement #7c436f */
+  color: white;
+}
 
-        a.btn-primary {
-            background-color: #2D3748;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-size: 16px;
-            margin-top: 20px;
-            display: inline-block;
-        }
+tr:nth-child(even) {
+  background-color: #e7e1e7; /* Adjusted background color to complement #7c436f */
+}
+
+.btn-primary {
+  background-color: #7c436f; /* Updated background color to match #7c436f */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-top: 20px;
+  display: inline-block;
+}
+.btn-primary:hover{background-color: #ff6f8e;
+      border-color: #393d42;}
+
     </style>
 @endsection

@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\RidesController;
+use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ratingController;
 use Illuminate\Support\Facades\Route;
@@ -20,7 +21,7 @@ use Illuminate\Support\Facades\Broadcast;
 Route::get('/', function () {
     return view('welcome');
 });
-
+Auth::routes(['verify'=>true]);
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -29,6 +30,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::patch('/profile/update-vehicle', [ProfileController::class, 'updateVehicle'])->name('profile.update.vehicle');
+
 });
 Route::get('/rides', [RidesController::class, 'index'])->name('rides.index');
 Route::get('/rides/create', [RidesController::class, 'create'])->name('rides.create');
@@ -37,7 +40,7 @@ Route::post('/rides/{ride}/reserve', [RidesController::class, 'reserve'])->name(
 Route::get('/rides/{ride}/reserve', [RidesController::class, 'show'])->name('rides.reserve');
 Route::post('/reservations', [ReservationsController::class, 'reserve'])->name('reservations.store');
 Route::get('/reservations', [RidesController::class, 'store'])->name('reservations.show');
-Route::get('/rating',[ratingController::class,'rating']);
+Route::get('/rating',[ratingController::class,'rating'])->name('rating.index');
 Route::post('/rides/store',[RidesController::class,'store'])->name('rides.store');
 Route::get('/map', function () {
     return view('map');
@@ -51,5 +54,21 @@ Route::get('/move', function () {
 Route::get('/map2', function () {
     return view('map2');
 });
+Route::get('/map3', function () {
+    return view('rides/map3');
+});
+Route::post('/driver-location', [LocationController::class, 'driverLocation']);
+Route::post('/passenger-location', [LocationController::class, 'passengerLocation']);
+
+Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
+
 require __DIR__.'/auth.php';
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/rides/reserve-confirm', [RidesController::class, 'reserve'])->name('reserveconfirm');
+Route::post('/reservations/{id}/drop', 'App\Http\Controllers\ReservationController@drop')->name('reservations.drop');
+Route::get('/reservations', [ReservationController::class, 'index'])->name('reservations.index');
+Route::get('/reservations/{id}/drop', 'App\Http\Controllers\ReservationController@drop')->name('reservations.drop');

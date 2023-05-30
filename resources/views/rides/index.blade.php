@@ -21,11 +21,6 @@
     <div class="container rides-list">
         <h1>Choose Your Ride</h1>
 
-
-
-
-
-
         @if (count($rides) > 0)
             <table class="table">
                 <thead>
@@ -59,7 +54,14 @@
             <p>No rides found.</p>
         @endif
     </div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAc3KPkQnsWeDevZxfQ4hwNKb98pb80Gbg&libraries=places"></script>
+    <script>
+      var sourceInput = document.getElementById('departure');
+      var destinationInput = document.getElementById('destination');
 
+      var sourceAutocomplete = new google.maps.places.Autocomplete(sourceInput);
+      var destinationAutocomplete = new google.maps.places.Autocomplete(destinationInput);
+    </script>
 
 
 
@@ -117,7 +119,7 @@ form {
   padding: 20px;
   border-radius: 10px;
   margin-bottom: 20px;
-  width: 94%;
+  width: 100%;
   display: flex; /* Add display flex */
   align-items: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
@@ -146,7 +148,7 @@ form label {
 
 form input[type="text"] {
   background-color: #f4f1f5;
-  color: white;
+  color: rgb(12, 12, 12);
   border: none;
   padding: 10px;
   border-radius: 5px;

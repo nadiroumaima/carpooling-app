@@ -23,13 +23,13 @@ class reservation extends Model
 
     public function ride()
 {
-    return $this->belongsTo(rides::class, 'ride_id');
+    return $this->belongsTo(rides::class, 'rides_id');
 }
 
 public function getReservationsByRide($rideId)
 {
     try {
-        $reservations = self::where('ride_id', $rideId)->get();
+        $reservations = self::where('rides_id', $rideId)->get();
             return $reservations;
     } catch (\Exception $e) {
         // Handle any exceptions that may occur

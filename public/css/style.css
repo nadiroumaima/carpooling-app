@@ -2,14 +2,14 @@
 body {
     background-color: #f5f5f5;
   }
-  
-  
+
+
   /* Center the rides container */
   .container {
     margin: auto;
     max-width: 800px;
   }
-  
+
   /* Style the table */
   table {
     width: 100%;
@@ -17,19 +17,19 @@ body {
     background-color: white;
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
   }
-  
+
   th,
   td {
     padding: 12px 15px;
     text-align: left;
     border-bottom: 1px solid #ddd;
   }
-  
+
   th {
     background-color: #4CAF50;
     color: white;
   }
-  
+
   /* Style the "Book Now" button */
   .book-now-btn {
     display: inline-block;
@@ -39,11 +39,11 @@ body {
     border-radius: 5px;
     text-decoration: none;
   }
-  
+
   .book-now-btn:hover {
     background-color: #3e8e41;
   }
-  
+
   /* Style the "Add Ride" button */
   .add-ride-btn {
     display: inline-block;
@@ -55,8 +55,7 @@ body {
     float: right;
     margin-bottom: 10px;
   }
-  
+
   .add-ride-btn:hover {
     background-color: #0b7dda;
   }
-  
