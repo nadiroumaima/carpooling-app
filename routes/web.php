@@ -44,6 +44,7 @@ Route::get('/rides/{ride}/reserve-confirm', [RidesController::class, 'getDriverI
 
 Route::get('/reservations', [ReservationController::class, 'index'])->name('reservations.index');
 
+Route::post('/reservations/{id}/drop', 'App\Http\Controllers\ReservationController@drop')->name('reservations.drop');
 
 
 Route::get('/rides/{ride}/reserve', [RidesController::class, 'reserve'])->name('rides.reserve');

@@ -22,7 +22,7 @@ return new class extends Migration
 
             // Add foreign key constraint to name column referencing the name column of the users table
             $table->foreign('name')->references('name')->on('users');
-            $table->timestamp('created_at')->default(null)->change();
+            
         });
     }
 

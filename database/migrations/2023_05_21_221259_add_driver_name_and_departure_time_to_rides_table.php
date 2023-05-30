@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('rides', function (Blueprint $table) {
             $table->string('driver_name')->after('id');
-            $table->dateTime('departure_time')->nullable();
+            $table->dateTime('departure_time')->nullable;
         });
     }
 
