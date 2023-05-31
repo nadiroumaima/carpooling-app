@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Notifications\RideReservationNotification;
 use Carbon\Carbon;
 use Carbon\Traits\Timestamp;
 use Illuminate\Http\Request;
@@ -8,6 +9,8 @@ use App\Models\rides;
 use Illuminate\Support\Facades\Auth;
 use App\Models\reservation;
 use App\Models\User;
+use App\Models\Rating;
+
 use App\Http\Controllers\Exception;
 class RidesController extends Controller
 
@@ -84,6 +87,11 @@ public function reserve(Request $request, $id)
     $ride->reservations()->save($reservation);
     $driver = $this->getDriverInformation($ride->driver_id);
     // Update available seats for the ride
+    $driverId = $reservation->ride->driver_id;
+    $driver = User::findOrFail($driverId);
+    // Send a notification to the driver
+    $driver->notify(new RideReservationNotification($reservation));
+
     $ride->available_seats -= $reservation->num_passengers;
     $ride->save();
     // Redirect to the reservation confirmation page

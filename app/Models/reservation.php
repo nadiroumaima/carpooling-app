@@ -46,4 +46,11 @@ public function getReservationsByRide($rideId)
     {
         return $query->where('is_dropped', false);
     }
+
+    public function user()
+{
+    return $this->belongsTo(User::class);
+}
+
+
 }

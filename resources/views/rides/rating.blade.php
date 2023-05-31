@@ -1,71 +1,72 @@
 @extends('layouts.app')
 
 @section('content')
-	<div class="container">
-<h1>View all the ratings</h1>
-<table border = "1">
-<tr>
-<th>Driver</th>
-<th>Passenger</th>
-<th>Rating</th>
-<th>Additional Comment</th>
-<th>Created at</th>
-<th>Updated at</th>
-</tr>
-@foreach ($ratings as $rating)
-<tr>
-<td>{{ $rating->driver_id }}</td>
-<td>{{ $rating->passenger_id }}</td>
-<td>{{ $rating->rating }}</td>
-<td>{{ $rating->comment }}</td>
-<td>{{ $rating->created_at }}</td>
-<td>{{ $rating->updated_at }}</td>
-</tr>
-@endforeach
-</table>
+    <div class="container">
+        <h1 class="ratings-heading">Recent Ratings</h1>
+        <table class="rating-table">
+            <tr>
+                <th>Driver</th>
+                <th>Passenger</th>
+                <th>Rating</th>
+                <th>Additional Comment</th>
+                <th>Created at</th>
+            </tr>
+            @foreach ($ratings as $rating)
+                <tr>
+                    <td>{{ $rating->driver_id }}</td>
+                    <td>{{ $rating->passenger_id }}</td>
+                    <td>@for ($i = 1; $i <= $rating->rating; $i++)
+                        <span class="star">&#9733;</span>
+                    @endfor</td>
+                    <td>{{ $rating->comment }}</td>
+                    <td>{{ $rating->created_at }}</td>
+                </tr>
+            @endforeach
+        </table>
+    </div>
 
-<style>
-   .card-header {
-            background-color: #E2E8F0;
-            font-size: 20px;
-            font-weight: bold;
-            padding: 20px;
-            color: #4A5568;
+    <style>
+        body {
+            background-color: #f8f9fa;
         }
 
-        .card-body {
-            background-color: #EDF2F7;
-            padding: 20px;
+        .ratings-heading {
+            background-color: #89b39e; /* Similar green color */
+            color: #fff;
+            font-size: 2.5rem;
+            text-align: center;
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
-        table {
+        .rating-table {
             border-collapse: collapse;
             width: 100%;
-        }
-
-        th, td {
-            text-align: left;
-            padding: 8px;
-        }
-
-        th {
-            background-color: #A0AEC0;
-            color: white;
-        }
-
-        tr:nth-child(even) {
-            background-color: #D6DBDF;
-        }
-
-        a.btn-primary {
-            background-color: #2D3748;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-size: 16px;
             margin-top: 20px;
-            display: inline-block;
+        }
+
+        .rating-table th,
+        .rating-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .rating-table th {
+            background-color: #7c436f;
+            color: #fff;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .rating-table tr:nth-child(even) {
+            background-color: #f0f5f4; /* Light sage green */
+        }
+        .star {
+            color: #ffce00; /* Yellow star color */
+            font-size: 1.5rem;
         }
     </style>
 @endsection

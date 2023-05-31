@@ -72,3 +72,7 @@ Route::get('/rides/reserve-confirm', [RidesController::class, 'reserve'])->name(
 Route::post('/reservations/{id}/drop', 'App\Http\Controllers\ReservationController@drop')->name('reservations.drop');
 Route::get('/reservations', [ReservationController::class, 'index'])->name('reservations.index');
 Route::get('/reservations/{id}/drop', 'App\Http\Controllers\ReservationController@drop')->name('reservations.drop');
+Route::get('/reservations/{id}/mark-as-done', [ReservationController::class, 'markAsDone'])->name('reservations.markAsDone');
+Route::post('/ratings/store', 'App\Http\Controllers\RatingController@store')->name('ratings.store');
+Route::get('/ratings/store', 'App\Http\Controllers\RatingController@store')->name('ratings.store');
+Route::get('/notifications', [App\Http\Controllers\NotificationsController::class, 'index'])->name('notifications.index');
