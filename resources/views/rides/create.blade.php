@@ -5,7 +5,7 @@
 
 
 @section('content')
-
+<body>
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-8">
@@ -62,9 +62,19 @@
   </div>
 </div>
 
+</body>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAc3KPkQnsWeDevZxfQ4hwNKb98pb80Gbg&libraries=places"></script>
+<script>
+  var sourceInput = document.getElementById('source');
+  var destinationInput = document.getElementById('destination');
+
+  var sourceAutocomplete = new google.maps.places.Autocomplete(sourceInput);
+  var destinationAutocomplete = new google.maps.places.Autocomplete(destinationInput);
+</script>
+
 <style>
   body {
-      background-color: #f8f9fa;
+    background-image: url('/tile_background.png');
   }
   
   .card {

@@ -19,11 +19,8 @@
        
     </head>
     <body class="font-sans antialiased" >
-        <div class="min-h-screen" style="background-color: #ffffff;
-        background-image: linear-gradient(225deg, #ffffff 0%, #f5e2eb 12%, #7c436f 100%);
-        
-        
-        ">
+        <body class="font-sans antialiased" >
+            <div class="min-h-screen" >
 
             @include('layouts.navigation')
 

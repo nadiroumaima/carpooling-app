@@ -73,6 +73,14 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
+.rides-list {
+  background-color: #7c436f;
+  color: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
 h1 {
   font-size: 40px;
   text-align: center;

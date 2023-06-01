@@ -2,6 +2,7 @@
 
 
 @section('content')
+<body>
 <form method="GET" action="{{ route('rides.index') }}" class="mb-3">
     <div class="form-row">
         <div class="col-md-4">
@@ -59,12 +60,21 @@
             <p>No rides found.</p>
         @endif
     </div>
+  </body>
 
 
 
-        
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAc3KPkQnsWeDevZxfQ4hwNKb98pb80Gbg&libraries=places"></script>
+  <script>
+    var sourceInput = document.getElementById('departure');
+    var destinationInput = document.getElementById('destination');
+
+    var sourceAutocomplete = new google.maps.places.Autocomplete(sourceInput);
+    var destinationAutocomplete = new google.maps.places.Autocomplete(destinationInput);
+  </script>     
 
     <style>
+      body{background-image: url('/tile_background.png');}
         .rides-list {
   background-color: #7c436f;
   color: white;

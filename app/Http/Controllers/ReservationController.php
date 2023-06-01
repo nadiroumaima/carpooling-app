@@ -37,5 +37,36 @@ class ReservationController extends Controller
     return redirect()->route('reservations.index')->with('success', 'Reservation dropped successfully.');
 }
 
+public function markAsDone($id)
+{
+    // Retrieve the reservation with the specified ID
+    $reservation = Reservation::findOrFail($id);
+
+    // Check if the reservation is already marked as done
+    if ($reservation->is_done) {
+        // If the reservation is already marked as done, you can handle it as per your application's logic
+        return redirect()->route('reservations.index')->with('error', 'Reservation is already marked as done.');
+    }
+
+    // Perform any necessary operations to mark the reservation as done
+    // For example, you can update the 'is_done' field to true
+    $reservation->is_done = true;
+    $reservation->save();
+
+    // Optionally, you can redirect the user back to the reservations page or display a success message
+    return redirect()->route('reservations.index')->with('success', 'Reservation marked as done successfully.');
+}
+
+
+public function createRating($reservationId)
+{
+    // Find the reservation by its ID
+    $reservation = Reservation::findOrFail($reservationId);
+
+    return view('ratings.create', compact('reservation'));
+}
 
 }
+
+
+
