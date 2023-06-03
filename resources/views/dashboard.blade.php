@@ -62386,7 +62386,8 @@ a.u-link.u-text-hover-grey-90:hover {
               </div>
             </div>
           </div>
-          <a href="https://nicepage.com/k/interactive-website-templates" class="u-active-black u-btn u-btn-round u-button-style u-hover-black u-palette-2-light-1 u-radius-50 u-text-active-white u-text-hover-white u-btn-1">Book Now</a>
+          <a href="{{ route('rides.index') }}" class="u-active-black u-btn u-btn-round u-button-style u-hover-black u-palette-2-light-1 u-radius-50 u-text-active-white u-text-hover-white u-btn-1">Book Now</a>
+
         </section>
         <section class="u-clearfix u-section-2" id="sec-cbc7">
           <div class="u-clearfix u-sheet u-sheet-1">
