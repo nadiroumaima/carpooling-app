@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class ride extends Model
 {
     use HasFactory;
-    protected $fillable= ['departure', 'arrvale', 'date','price','seats_available','user_id'];
+    protected $fillable= ['departure_time', 'arrvale', 'date','price','seats_available','user_id'];
     public function user() {return $this->belongTo(User::class);}
     public function reservations()
     {

@@ -69,6 +69,7 @@ Route::get('/rate/{reservation_id}', [RatingController::class, 'create'])->name(
 Route::post('/admin/review/store', [ReviewController::class, 'store'])->name('admin.review.store');
 Route::post('/rating/store', [RatingController::class, 'store'])->name('rating.store');
 
+
 Route::get('/reservations/{id}/drop', 'App\Http\Controllers\ReservationController@drop')->name('reservations.drop');
 
 

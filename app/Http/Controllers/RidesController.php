@@ -43,7 +43,7 @@ public function store(Request $req)
     $ride->date=Carbon::now();
     $ride->from=$req->source;
     $ride->to=$req->destination;
-    $ride->departure_time=$req->deparature_time;
+    $ride->departure_time=$req->departure_time;
     $ride->available_seats=$req->number_of_seats;
     $ride->save();
     return redirect()->route('rides.index');
@@ -124,6 +124,8 @@ public function getDriverInformation($id)
     $driverInformation = [
         'name' => $user->name,
         'email' => $user->email,
+        'number' => $user->phone_number,
+        'picture' => $user->picture,
         
     ];
     return $driverInformation;

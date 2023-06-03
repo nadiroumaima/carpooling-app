@@ -135,13 +135,14 @@ background: linear-gradient(0deg, rgba(125,68,111,1) 5%, rgba(145,95,133,1) 45%,
             </tbody>
             </table>
             @else
-            <p>Aucune réservation trouvée.</p>
+            <div style="display: flex; align-items: center; justify-content: center; height: 70vh;">
+                <p style="font-family: 'Montserrat', sans-serif; font-size: 32px; color: #333333; font-weight: bold; text-align: center;">No reservations for now</p>
+              </div>
             @endif
 
-            <footer class="site-footer" id="footer">
-    
-              <p class="site-footer__fineprint" id="fineprint">Carpoolers  | 2023</p>
-            </footer>    
+            <footer class="site-footer" id="footer" style="background-color: #69015b; padding: 20px; text-align: center;">
+                <p class="site-footer__fineprint" id="fineprint" style="font-family: 'Roboto', Arial, sans-serif; font-size: 14px; color: #f3f3f3;">Carpoolers | 2023</p>
+            </footer>   
 </body>     
            
 

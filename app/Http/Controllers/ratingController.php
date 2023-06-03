@@ -11,13 +11,15 @@ use Illuminate\Http\Request;
 class RatingController extends Controller
 {
     public function rating() {
-        /*$ratings=DB::table('ratings')->select('driver_id','passenger_id','rating','comment','created_at','updated_at');
-        $data=compact('ratings');*/
-        $ratings = DB::select('select * from ratings');
-        return view('rides.rating',['ratings'=>$ratings]);
-        /*dd($ratings);
-        return view('rides.rating')->with($data);*/
+        $ratings = DB::table('ratings')
+            ->join('users', 'ratings.driver_id', '=', 'users.id')
+            ->select('users.name as driver_name', 'ratings.passenger_id', 'ratings.rating', 'ratings.comment', 'ratings.created_at', 'ratings.updated_at')
+            ->get();
+    
+        return view('rides.rating', ['ratings' => $ratings]);
     }
+    
+    
 
     
 

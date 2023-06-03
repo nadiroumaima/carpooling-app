@@ -48,8 +48,8 @@
             z-index: 2;
         }
 
-        
- .driver-email,
+        .driver-num,
+.driver-email,
 .driver-name {
   display: none;
   font-size: 16px;
@@ -58,11 +58,13 @@
   font-weight: bold;
 }
 
+.show-num,
 .show-email,
 .show-name {
   display: block;
   font-weight: bold;
 }
+
 
 .message-card {
  
@@ -73,6 +75,8 @@ background: linear-gradient(0deg, rgba(68,109,125,1) 6%, rgba(255,250,255,1) 90%
   padding: 20px;
   
 }
+
+
 
 
 
@@ -90,6 +94,9 @@ background: linear-gradient(0deg, rgba(68,109,125,1) 6%, rgba(255,250,255,1) 90%
   
   var driverName = document.getElementById("driverName");
   driverName.classList.toggle("show-name");
+  var driverNum = document.getElementById("drivernum");
+  driverNum.classList.toggle("show-num");
+  
 }
 
 
@@ -112,6 +119,8 @@ background: linear-gradient(0deg, rgba(68,109,125,1) 6%, rgba(255,250,255,1) 90%
         <a href="#" class="contact-button" onclick="toggleDriverInfo()">Contact Your Driver</a>
         <p class="driver-name" id="driverName"> Name:{{ $driver['name'] }}</p>
           <p class="driver-email" id="driverEmail">Email:{{ $driver['email'] }}</p>
+          <p class="driver-num" id="drivernum">Number:{{ $driver['number'] }}</p>
+          
     </div>
       
 

@@ -1,3 +1,5 @@
+
+<style>body{background-color :#7c436f }</style>
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
@@ -5,9 +7,10 @@
         </h2>
 
     </x-slot>
+    
 
 @section('content')
-
+<body>
     <div class="py-12" >
 
         <div class="max-w-full px-4 sm:px-6 lg:px-8 space-y-6">
@@ -35,7 +38,7 @@
                 </div>
             </div>
         </div>
-
+    </body>
 
     @endsection
 </x-app-layout>

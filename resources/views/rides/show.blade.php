@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<body>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -23,12 +24,12 @@
                                     <td>{{ $ride->driver_name}}</td>
                                 </tr>
                                 <tr>
-                                    <td>{{ __('Date') }}</td>
+                                    <td>{{ __('Created at') }}</td>
                                     <td>{{ $ride->date }}</td>
                                 </tr>
                                 <tr>
-                                    <td>{{ __('Time') }}</td>
-                                    <td>{{ $ride->time }}</td>
+                                    <td>{{ __('Departure Time') }}</td>
+                                    <td>{{ $ride->departure_time }}</td>
                                 </tr>
                                 <tr>
                                     <td>{{ __('Seats Available') }}</td>
@@ -41,7 +42,7 @@
                             </tbody>
                         </table>
                         @if (auth()->check()) {{-- Check if the user is authenticated --}}
-                            <button class="btn btn-primary" id="reserve-btn">Reserve</button>
+                            <button class="btn btn-primary" id="reserve-btn">Book Now</button>
 
                             <form id="reserve-form" action="{{ route('rides.reserve', ['ride' => $ride->id]) }}" method="POST" style="display: none;">
                                 @csrf
@@ -53,7 +54,7 @@
                                     <label for="notes">Notes:</label>
                                     <textarea name="notes" id="notes" class="form-control"></textarea>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Reserve</button>
+                                <button type="submit" class="btn btn-primary">Book Now</button>
                             </form>
                         @else
                             <p>Please login to reserve a seat.</p>
@@ -63,6 +64,7 @@
             </div>
         </div>
     </div>
+
 
     <script>
         document.getElementById('reserve-btn').addEventListener('click', function() {
@@ -79,8 +81,11 @@
             </div>
         </div>
     </div>
-
+</body>
     <style>
+        body {
+    background-image: url('/tile_background.png');
+  }
         .card {
   width: 500px;
   position: absolute;
