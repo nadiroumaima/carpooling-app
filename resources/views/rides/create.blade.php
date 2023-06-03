@@ -52,10 +52,71 @@
               </span>
               @enderror
             </div>
-            <div class="form-group">
-              <button type="submit" class="btn btn-primary">{{ __('Publish') }}</button>
+            
+            
+            
+            
+            @if( is_null(auth()->user()->vehicle_id))
+            <div class="alert alert-warning" role="alert">
+              You haven't provided your vehicle information yet. Please do so before publishing
             </div>
-          </form>
+              <div class="form-group">
+                <label for="license_plate">{{ __('License Plate') }}</label>
+                <input id="license_plate" placeholder="Enter license plate" type="text" class="form-control @error('license_plate') is-invalid @enderror" name="license_plate" value="{{ old('license_plate') }}" required autocomplete="license_plate" autofocus>
+                @error('license_plate')
+                <span class="invalid-feedback" role="alert">
+                  <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+              </div>
+            
+              <div class="form-group">
+                <label for="model">{{ __('Model') }}</label>
+                <input id="model" placeholder="Enter model" type="text" class="form-control @error('model') is-invalid @enderror" name="model" value="{{ old('model') }}" required autocomplete="model" autofocus>
+                @error('model')
+                <span class="invalid-feedback" role="alert">
+                  <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+              </div>
+            
+              <div class="form-group">
+                <label for="brand">{{ __('Brand') }}</label>
+                <input id="brand" placeholder="Enter brand" type="text" class="form-control @error('brand') is-invalid @enderror" name="brand" value="{{ old('brand') }}" required autocomplete="brand" autofocus>
+                @error('brand')
+                <span class="invalid-feedback" role="alert">
+                  <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+              </div>
+            
+              <div class="form-group">
+                <label for="capacity">{{ __('Capacity') }}</label>
+                <input id="capacity" placeholder="Enter capacity" type="number" class="form-control @error('capacity') is-invalid @enderror" name="capacity" value="{{ old('capacity') }}" required autocomplete="capacity">
+                @error('capacity')
+                <span class="invalid-feedback" role="alert">
+                  <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+              </div>
+            
+              <div class="form-group">
+                <label for="color">{{ __('Color') }}</label>
+                <input id="color" placeholder="Enter color" type="text" class="form-control @error('color') is-invalid @enderror" name="color" value="{{ old('color') }}" required autocomplete="color" autofocus>
+                @error('color')
+                <span class="invalid-feedback" role="alert">
+                  <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+              </div>
+            @endif
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary" name="publish">{{ __('Publish') }}</button>
+            </div>
+            </form>
+            
+            
+            
         </div>
       </div>
     </div>
@@ -142,5 +203,19 @@
           margin: 50px auto;
       }
   }
+  .alert-warning {
+  background-color: #fff3cd;
+  color: #856404;
+  border-color: #ffeeba;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+}
+
+.alert-warning strong {
+  font-weight: bold;
+}
+
 </style>
 @endsection

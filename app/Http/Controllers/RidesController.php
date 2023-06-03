@@ -7,6 +7,7 @@ use App\Models\ride;
 use Illuminate\Support\Facades\Auth;
 use App\Models\reservation;
 use App\Models\User;
+use App\Models\Vehicle;
 
 class RidesController extends Controller
     {
@@ -37,6 +38,23 @@ public function store(Request $req)
 {
     $userId = Auth::id();
     $user = auth()->user();
+
+    if (is_null($user->vehicle)) {
+        // Create a new vehicle
+        $vehicle = new Vehicle();
+        $vehicle->user_id = $userId;
+        $vehicle->license_plate = $req->license_plate;
+        $vehicle->model = $req->model;
+        $vehicle->brand = $req->brand;
+        $vehicle->capacity = $req->capacity;
+        $vehicle->color = $req->color;
+        $vehicle->save(); 
+
+        $user->vehicle_id = $vehicle->id;
+        $user->save();
+       
+       
+    }
     $ride= new ride();
     $ride->driver_id=$userId;
     $ride->driver_name=$user->name;

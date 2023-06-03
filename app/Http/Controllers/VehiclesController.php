@@ -21,7 +21,7 @@ class vehiclesController extends Controller
         $user = auth()->user();
 
         // Retrieve the vehicle associated with the user, or create a new one if none exists
-        $vehicle = $user->vehicle ?? new vehicles();
+        $vehicle = $user->vehicle ?? new Vehicle();
 
         // Update the vehicle information
         $vehicle->license_plate = $request->input('license_plate');

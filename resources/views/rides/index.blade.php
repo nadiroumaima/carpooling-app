@@ -156,7 +156,7 @@ form label {
 
 form input[type="text"] {
   background-color: #f4f1f5;
-  color: white;
+  color: rgb(5, 5, 5);
   border: none;
   padding: 10px;
   border-radius: 5px;
