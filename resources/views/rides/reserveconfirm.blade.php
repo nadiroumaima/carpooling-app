@@ -48,8 +48,8 @@
             z-index: 2;
         }
 
-
- .driver-email,
+        .driver-num,
+.driver-email,
 .driver-name {
   display: none;
   font-size: 16px;
@@ -58,11 +58,26 @@
   font-weight: bold;
 }
 
+.show-num,
 .show-email,
 .show-name {
   display: block;
   font-weight: bold;
 }
+
+
+.message-card {
+
+  background: rgb(68,109,125);
+background: linear-gradient(0deg, rgba(68,109,125,1) 6%, rgba(255,250,255,1) 90%);
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+
+}
+
+
+
 
 
 
@@ -79,6 +94,9 @@
 
   var driverName = document.getElementById("driverName");
   driverName.classList.toggle("show-name");
+  var driverNum = document.getElementById("drivernum");
+  driverNum.classList.toggle("show-num");
+
 }
 
 
@@ -89,7 +107,8 @@
     </script>
 
 </head>
-<body>
+<body >
+    <div class="message-card">
     <header class="site-header" id="header">
         <h1 class="site-header__title" data-lead-id="site-header-title">Reservation confirmed!!</h1>
     </header>
@@ -100,13 +119,16 @@
         <a href="#" class="contact-button" onclick="toggleDriverInfo()">Contact Your Driver</a>
         <p class="driver-name" id="driverName"> Name:{{ $driver['name'] }}</p>
           <p class="driver-email" id="driverEmail">Email:{{ $driver['email'] }}</p>
+          <p class="driver-num" id="drivernum">Number:{{ $driver['number'] }}</p>
 
     </div>
+
 
 	<footer class="site-footer" id="footer">
 
 		<p class="site-footer__fineprint" id="fineprint">Carpoolers  | 2023</p>
 	</footer>
+</div>
 </body>
 </html>
 @endsection

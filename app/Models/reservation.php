@@ -51,6 +51,9 @@ public function getReservationsByRide($rideId)
 {
     return $this->belongsTo(User::class);
 }
-
+public function createdBy()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 
 }

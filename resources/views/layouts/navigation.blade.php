@@ -8,41 +8,41 @@
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="text-blue-500" />
+                        <x-application-logo class="text-gray-500" />
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <div class="flex items-center">
-                        <i data-feather="home" class="text-blue-500"></i>
+                        <i data-feather="home" class="text-gray-500"></i>
                         <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                             {{ __('Dashboard') }}
                         </x-nav-link>
                     </div>
                     <div class="flex items-center">
                         <x-nav-link :href="route('rides.index')" :active="request()->routeIs('rides.index')" class="flex items-center border-b-2">
-                            <i data-feather="search" class="text-blue-500"></i> {{ __('Search for a ride') }}
+                            <i data-feather="search" class="text-gray-500"></i> {{ __('Search for a ride') }}
                         </x-nav-link>
                     </div>
                     <div class="flex items-center">
                         <x-nav-link :href="route('rides.create')" :active="request()->routeIs('rides.create')" class="flex items-center border-b-2">
-                            <i data-feather="plus-circle" class="text-blue-500"></i> {{ __('Publish your ride') }}
+                            <i data-feather="plus-circle" class="text-gray-500"></i> {{ __('Publish your ride') }}
                         </x-nav-link>
                     </div>
                     <div class="flex items-center">
                         <x-nav-link :href="route('reservations.index')" :active="request()->routeIs('reservations.index')" class="flex items-center border-b-2">
-                            <i data-feather="bookmark" class="text-blue-500"></i> {{ __('Reservations') }}
+                            <i data-feather="bookmark" class="text-gray-500"></i> {{ __('Reservations') }}
                         </x-nav-link>
                     </div>
                     <div class="flex items-center">
                         <x-nav-link :href="route('rating.index')" :active="request()->routeIs('rating.index')" class="flex items-center border-b-2">
-                            <i data-feather="star" class="text-blue-500"></i> {{ __('Ratings') }}
+                            <i data-feather="star" class="text-gray-500"></i> {{ __('Ratings') }}
                         </x-nav-link>
                     </div>
                     <div class="flex items-center">
                         <x-nav-link :href="route('notifications.index')" :active="request()->routeIs('notifications.index')" class="flex items-center border-b-2">
-                            <i data-feather="bell" class="text-blue-500"></i>
+                            <i data-feather="bell" class="text-gray-500"></i>
                             {{ __('Notifications') }}
                             @if(auth()->user()->unreadNotifications->count() > 0)
                                 <span class="bg-red-500 text-white px-2 py-1 rounded-full ml-2">{{ auth()->user()->unreadNotifications->count() }}</span>
@@ -55,7 +55,7 @@
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <div class="flex items-center ml-4">
-                    <i data-feather="user" class="text-blue-500"></i>
+                    <i data-feather="user" class="text-gray-500"></i>
                     <x-dropdown align="right" width="48" class="ml-2">
                         <x-slot name="trigger">
                             <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
@@ -107,19 +107,19 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('rides.index')" :active="request()->routeIs('rides.index')" class="flex items-center border-b-2">
-                <i data-feather="search" class="text-blue-500"></i> {{ __('Search for a ride') }}
+                <i data-feather="search" class="text-gray-500"></i> {{ __('Search for a ride') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('rides.create')" :active="request()->routeIs('rides.create')" class="flex items-center border-b-2">
-                <i data-feather="plus-circle" class="text-blue-500"></i> {{ __('Publish your ride') }}
+                <i data-feather="plus-circle" class="text-gray-500"></i> {{ __('Publish your ride') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('reservations.index')" :active="request()->routeIs('reservations.index')" class="flex items-center border-b-2">
-                <i data-feather="bookmark" class="text-blue-500"></i> {{ __('Reservations') }}
+                <i data-feather="bookmark" class="text-gray-500"></i> {{ __('Reservations') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('rating.index')" :active="request()->routeIs('rating.index')" class="flex items-center border-b-2">
-                <i data-feather="star" class="text-blue-500"></i> {{ __('Ratings') }}
+                <i data-feather="star" class="text-gray-500"></i> {{ __('Ratings') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('notifications.index')" :active="request()->routeIs('notifications.index')" class="flex items-center border-b-2">
-                <i data-feather="bell" class="text-blue-500"></i>
+                <i data-feather="bell" class="text-gray-500"></i>
                 {{ __('Notifications') }}
                 @if(auth()->user()->unreadNotifications->count() > 0)
                     <span class="bg-red-500 text-white px-2 py-1 rounded-full ml-2">{{ auth()->user()->unreadNotifications->count() }}</span>

@@ -12,23 +12,27 @@
           <form method="POST" action="store">
             @csrf
             <div class="form-group">
-              <label for="source">{{ __('Source') }}</label>
-              <input id="source" placeholder="Enter source" type="text" class="form-control @error('source') is-invalid @enderror" name="source" value="{{ old('source') }}" required autocomplete="source" autofocus>
-              @error('source')
-              <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-              </span>
-              @enderror
-            </div>
-            <div class="form-group">
-              <label for="destination">{{ __('Destination') }}</label>
-              <input id="destination" placeholder="Enter destination" type="text" class="form-control @error('destination') is-invalid @enderror" name="destination" value="{{ old('destination') }}" required autocomplete="destination" autofocus>
-              @error('destination')
-              <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-              </span>
-              @enderror
-            </div>
+                <label for="source">{{ __('Source') }}</label>
+                <input id="source" placeholder="Enter source" type="text" class="form-control @error('source') is-invalid @enderror" name="source" value="{{ old('source') }}" required autocomplete="source" autofocus>
+                <input id="source_latitude" type="hidden" name="source_latitude">
+                <input id="source_longitude" type="hidden" name="source_longitude">
+                @error('source')
+                <span class="invalid-feedback" role="alert">
+                  <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+              </div>
+              <div class="form-group">
+                <label for="destination">{{ __('Destination') }}</label>
+                <input id="destination" placeholder="Enter destination" type="text" class="form-control @error('destination') is-invalid @enderror" name="destination" value="{{ old('destination') }}" required autocomplete="destination" autofocus>
+                <input id="destination_latitude" type="hidden" name="destination_latitude">
+                <input id="destination_longitude" type="hidden" name="destination_longitude">
+                @error('destination')
+                <span class="invalid-feedback" role="alert">
+                  <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+              </div>
             <div class="form-group">
               <label for="departure_time">{{ __('Departure Time') }}</label>
               <input id="departure_time" type="datetime-local" class="form-control @error('departure_time') is-invalid @enderror" name="departure_time" value="{{ old('departure_time') }}" required autocomplete="departure_time">
@@ -59,11 +63,25 @@
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAc3KPkQnsWeDevZxfQ4hwNKb98pb80Gbg&libraries=places"></script>
 <script>
-  var sourceInput = document.getElementById('source');
-  var destinationInput = document.getElementById('destination');
+        var sourceInput = document.getElementById('source');
+        var destinationInput = document.getElementById('destination');
 
-  var sourceAutocomplete = new google.maps.places.Autocomplete(sourceInput);
-  var destinationAutocomplete = new google.maps.places.Autocomplete(destinationInput);
+        var sourceAutocomplete = new google.maps.places.Autocomplete(sourceInput);
+        var destinationAutocomplete = new google.maps.places.Autocomplete(destinationInput);
+
+        // Add event listeners to update the hidden fields when a place is selected
+        sourceAutocomplete.addListener('place_changed', function () {
+        var place = sourceAutocomplete.getPlace();
+        document.getElementById('source_latitude').value = place.geometry.location.lat();
+        document.getElementById('source_longitude').value = place.geometry.location.lng();
+        });
+
+        destinationAutocomplete.addListener('place_changed', function () {
+        var place = destinationAutocomplete.getPlace();
+        document.getElementById('destination_latitude').value = place.geometry.location.lat();
+        document.getElementById('destination_longitude').value = place.geometry.location.lng();
+        });
+
 </script>
 <style>
     <style>

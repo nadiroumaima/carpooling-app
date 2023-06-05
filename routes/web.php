@@ -3,6 +3,8 @@ use App\Http\Controllers\RidesController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ratingController;
+use App\Http\Controllers\MapController;
+
 use Illuminate\Support\Facades\Route;
 use App\Events\driverMoved;
 use Illuminate\Support\Facades\Broadcast;
@@ -52,10 +54,10 @@ Route::get('/move', function () {
     dump('Driver moved');
 });
 Route::get('/map2', function () {
-    return view('map2');
+    return view('tempmap2');
 });
 Route::get('/map3', function () {
-    return view('rides/map3');
+    return view('rides/tempmap2');
 });
 Route::post('/driver-location', [LocationController::class, 'driverLocation']);
 Route::post('/passenger-location', [LocationController::class, 'passengerLocation']);
@@ -76,3 +78,4 @@ Route::get('/reservations/{id}/mark-as-done', [ReservationController::class, 'ma
 Route::post('/ratings/store', 'App\Http\Controllers\RatingController@store')->name('ratings.store');
 Route::get('/ratings/store', 'App\Http\Controllers\RatingController@store')->name('ratings.store');
 Route::get('/notifications', [App\Http\Controllers\NotificationsController::class, 'index'])->name('notifications.index');
+Route::get('map/{id}', 'App\Http\Controllers\MapController@show')->name('rides.map');
