@@ -15,7 +15,7 @@
 @endforelse
 </ul>
 @endsection
-
+@section('title', 'Carpoolers')
 <style>
 h1 {
     color: rgb(177, 251, 226);

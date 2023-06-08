@@ -156,6 +156,7 @@ public function getRideData($rideId)
 
         return response()->json($rideData);
     }
+    
 }
 
 
