@@ -83,7 +83,7 @@
       });
     }, 500);
   </script>
-  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyAc3KPkQnsWeDevZxfQ4hwNKb98pb80Gbg&callback=initialize"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=YourAPIKey&callback=initialize"></script>
 </body>
 
 </html>
