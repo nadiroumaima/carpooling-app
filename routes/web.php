@@ -72,7 +72,7 @@ Route::post('/rating/store', [RatingController::class, 'store'])->name('rating.s
 
 Route::get('/reservations/{id}/drop', 'App\Http\Controllers\ReservationController@drop')->name('reservations.drop');
 
-
+Route::get('map/{id}', 'App\Http\Controllers\MapController@show')->name('rides.map');
 
 
 

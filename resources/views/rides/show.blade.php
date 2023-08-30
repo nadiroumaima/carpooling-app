@@ -36,8 +36,8 @@
                                     <td>{{ $ride->available_seats }}</td>
                                 </tr>
                                 <tr>
-                                    <td>{{ __('Price per Seat') }}</td>
-                                    <td>{{ $ride->price_per_seat }}</td>
+                                    <td>{{ __('Price per Seat (DH)') }}</td>
+                                    <td>{{ $ride->price_perseat }}</td>
                                 </tr>
                             </tbody>
                         </table>

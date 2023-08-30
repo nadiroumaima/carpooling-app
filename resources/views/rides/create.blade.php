@@ -52,6 +52,16 @@
               </span>
               @enderror
             </div>
+            <div class="form-group">
+              <label for="price_perseat">{{ __('Price per Seat(DH)') }}</label>
+              <input id="price_perseat" type="number" step="0.01" class="form-control @error('price_perseat') is-invalid @enderror" name="price_perseat" value="{{ old('price_perseat') }}" required autocomplete="price_perseat">
+              @error('price_perseat')
+              <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+              </span>
+              @enderror
+            </div>
+            
             
             
             

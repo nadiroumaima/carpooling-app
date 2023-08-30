@@ -35,11 +35,12 @@ class RidesController extends Controller
     return view('rides.create');
 }
 public function store(Request $req)
-{
+{/** @var \App\Models\User $user */
+$user = Auth::user();
     $userId = Auth::id();
-    $user = auth()->user();
+  /*  $user = auth()->user();*/
 
-    if (is_null($user->vehicle)) {
+    if (is_null($user->vehicle_id)) {
         // Create a new vehicle
         $vehicle = new Vehicle();
         $vehicle->user_id = $userId;
@@ -50,11 +51,10 @@ public function store(Request $req)
         $vehicle->color = $req->color;
         $vehicle->save(); 
 
-        $user->vehicle_id = $vehicle->id;
-        $user->save();
+        $user->update(['vehicle_id' => $vehicle->id]);}
        
        
-    }
+    
     $ride= new ride();
     $ride->driver_id=$userId;
     $ride->driver_name=$user->name;
@@ -63,6 +63,7 @@ public function store(Request $req)
     $ride->to=$req->destination;
     $ride->departure_time=$req->departure_time;
     $ride->available_seats=$req->number_of_seats;
+    $ride->price_perseat=$req->price_perseat;
     $ride->save();
     return redirect()->route('rides.index');
 }
