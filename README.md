@@ -43,19 +43,18 @@ Before you begin, ensure you have met the following requirements:
  ```bash composer install`
 4. Install Node.js dependencies:
  ```bash npm install
-`
+```
 5.Create a copy of the .env.example file and rename it to .env:
  ```bash cp .env.example .env
-`
+```
 6.Generate application key:
  ```bash php artisan key:generate
-`
+```
 7.Configure your database settings in the .env file.
 
 8.Migrate the database:
-```bash php artisan migrate`
+```bash php artisan migrate```
 9.Start the development server:
-```bash php artisan serve
-`
+```bash php artisan serve```
 10.Access the application in your browser at http://localhost:8000.
-``
+
