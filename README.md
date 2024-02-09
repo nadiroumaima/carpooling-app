@@ -35,26 +35,43 @@ Before you begin, ensure you have met the following requirements:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/carpooling-app.git```
+   git clone https://github.com/yourusername/carpooling-app.git
+   
+2. Navigate to the project directory:
 
-  2. Navigate to the project directory:
-  ```bash cd carpooling-`
- 3. Install PHP dependencies:
- ```bash composer install`
+   ```bash
+   cd carpooling
+
+
+
+
+
+3. Install PHP dependencies:
+ ```bash
+composer install
+
+
 4. Install Node.js dependencies:
- ```bash npm install
-```
+ ```bash
+ npm install
+
 5.Create a copy of the .env.example file and rename it to .env:
- ```bash cp .env.example .env
-```
+ ```bash
+ cp .env.example .env
+
 6.Generate application key:
- ```bash php artisan key:generate
-```
+ ```bash
+ php artisan key:generate
+
 7.Configure your database settings in the .env file.
 
 8.Migrate the database:
-```bash php artisan migrate```
+```bash
+ php artisan migrate
+
 9.Start the development server:
-```bash php artisan serve```
+```bash
+ php artisan serve
+
 10.Access the application in your browser at http://localhost:8000.
 
